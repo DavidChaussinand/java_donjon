@@ -5,7 +5,8 @@ public class Warrior {
         private String name;
         private int levelOfLife;
         private int attackForce;
-        private String weapon;
+        private String weaponName;
+        private int weaponAttackLevel;
         private String shield;
 
 
@@ -21,8 +22,8 @@ public class Warrior {
 
         public Warrior() {
             this.name= "ragnar";
-            this.levelOfLife = 8;
-            this.attackForce= 8;
+            this.levelOfLife = 5;
+            this.attackForce= 5;
 
         }
 
@@ -62,11 +63,11 @@ public class Warrior {
     public void setAttackForce(int attackForce) {
         this.attackForce = attackForce;
     }
-    public String getWeapon() {
-        return weapon;
+    public String getWeaponName() {
+        return weaponName;
     }
-    public void setWeapon(String weapon) {
-        this.weapon = weapon;
+    public void setWeapon(String weaponName) {
+        this.weaponName = weaponName;
     }
     public String getShield() {
         return shield;
