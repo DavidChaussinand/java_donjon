@@ -8,11 +8,11 @@ public class Main {
         Menu menu = new Menu();
 
         //
-        // menu.menu();
+        menu.menu();
 
         Game play1 = new Game();
-        play1.play();
-        play1.play();
+        //play1.play();
+
     }
 
 

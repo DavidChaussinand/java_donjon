@@ -3,6 +3,10 @@ import java.util.Objects;
 import java.util.Scanner;
 public class Menu {
 
+    private String name;
+    private int levelOfLife;
+    private int attackForce;
+
 
     public void showMenu(){
 
@@ -42,7 +46,7 @@ public class Menu {
 
         }
     }
-    public void MenuDansCreation(String name, int levelOfLife, int attackForce) {
+    public void MenuDansCreation(String nameold, int levelOfLifeold, int attackForceold) {
         Scanner user_input = new Scanner(System.in);
         System.out.println("tapez 1 : pour afficher les infos du perso en cours de création" +
                 "\ntapez 2 : pour modifier ses infos" +
@@ -71,11 +75,11 @@ public class Menu {
 
     public Warrior createWarrior() {
         Scanner user_input = new Scanner(System.in);
-        int levelOfLife = 0;
-        int attackForce = 0;
+        levelOfLife = 0;
+        attackForce = 0;
 
         System.out.print("Saisir votre nom de guerrier : ");
-        String name = user_input.nextLine();
+        name = user_input.nextLine();
         MenuDansCreation(name, levelOfLife, attackForce);
 
         System.out.print("Saisir votre niveau de vie entre 5 et 10: ");
@@ -93,8 +97,8 @@ public class Menu {
 
     public Wizard createWizard(){
         Scanner user_input = new Scanner(System.in);
-        int levelOfLife = 0;
-        int attackForce = 0;
+        levelOfLife = 0;
+        attackForce = 0;
 
         System.out.print("Saisir votre nom du magicien : ");
         String name = user_input.nextLine();
