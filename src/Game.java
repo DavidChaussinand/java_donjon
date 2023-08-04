@@ -16,6 +16,9 @@ public class Game {
         while (startCasePlayer < boardGame){
             startCasePlayer = startCasePlayer + seDeplacer();
             tour ++ ;
+            if (startCasePlayer > 64){
+                startCasePlayer = 64;
+            }
             System.out.println("tour " + tour + ":  le joueur est sur la case " + startCasePlayer);
         }
 
