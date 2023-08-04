@@ -12,6 +12,7 @@ public class Main {
 
         Game play1 = new Game();
         play1.play();
+        play1.play();
     }
 
 
