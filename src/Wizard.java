@@ -4,15 +4,17 @@ public class Wizard {
     private String name;
     private int levelOfLife;
     private int attackForce;
-    private String spell;
+    private String spellName;
+
+    private int spellAttackLevel;
     private String potion;
 
 
-    public Wizard (String Name, int levelOfLife, int attackForce ){
+    public Wizard (String name, int levelOfLife, int attackForce ){
         this.name = name;
         this.levelOfLife = levelOfLife;
         this.attackForce = attackForce;
-        //this.img = img;
+
     }
     public Wizard (String Name){
         this.name = name;
@@ -20,9 +22,8 @@ public class Wizard {
 
     public Wizard() {
         this.name= "Gandalf";
-        this.levelOfLife = 0;
-        this.attackForce= 0;
-      //  this.img;
+        this.levelOfLife = 3;
+        this.attackForce= 8;
     }
 
 
@@ -49,8 +50,8 @@ public class Wizard {
         return attackForce;
     }
 
-    public String getSpell() {
-        return spell;
+    public String getSpellName() {
+        return spellName;
     }
 
     public String getPotion() {
@@ -69,8 +70,15 @@ public class Wizard {
         this.attackForce = attackForce;
     }
 
-    public void setSpell(String spell) {
-        this.spell = spell;
+    public void setSpell(String spellName) {
+        this.spellName = spellName;
+    }
+    public int getSpellAttackLevel() {
+        return spellAttackLevel;
+    }
+
+    public void setSpellAttackLevel(int spellAttackLevel) {
+        this.spellAttackLevel = spellAttackLevel;
     }
 
     public void setPotion(String potion) {
@@ -79,7 +87,11 @@ public class Wizard {
 
 
 
+
 }
+
+
+
 
 
 
