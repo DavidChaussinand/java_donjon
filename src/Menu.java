@@ -19,7 +19,7 @@ public class Menu {
     }
 
 
-    public void menu() {
+    public void menu() throws PersonnageHorsPlateauException {
 
         Scanner user_input = new Scanner(System.in);
         showMenu();

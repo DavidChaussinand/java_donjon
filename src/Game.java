@@ -18,18 +18,26 @@ public class Game {
         return virtualDice;
     }
 
-    public void play(){
+
+
+    public void play() throws PersonnageHorsPlateauException {
+
         System.out.println("partie numéro : " + nbGame);
         while (this.positionPlayer < this.boardGame){
+
             this.positionPlayer = this.positionPlayer + seDeplacer();
             this.tour ++ ;
+
             if (this.positionPlayer > this.boardGame){
-                this.positionPlayer = this.boardGame;
+                throw new PersonnageHorsPlateauException("Tu es sorti du plateau : game over");
             }
+
             System.out.println("tour " + tour + ":  le joueur est sur la case " + this.positionPlayer);
+
+
         }
 
-        System.out.println("fin de partie ");
+        System.out.println("fin de partie ,vous avez gagné");
 
         if (this.positionPlayer >= this.boardGame){
             Scanner user_input = new Scanner(System.in);
