@@ -1,78 +1,49 @@
 import java.awt.Image;
 
-public class Wizard {
-    private String name;
-    private int levelOfLife;
-    private int attackForce;
+public class Wizard extends Character{
+
     private String spellName;
 
     private int spellAttackLevel;
     private String potion;
 
 
-    public Wizard (String name, int levelOfLife, int attackForce ){
-        this.name = name;
-        this.levelOfLife = levelOfLife;
-        this.attackForce = attackForce;
-
-    }
-    public Wizard (String Name){
-        this.name = name;
-    }
-
-    public Wizard() {
-        this.name= "Gandalf";
-        this.levelOfLife = 3;
-        this.attackForce= 8;
+    public Wizard (String name , int levelOfLife, int attackForce){
+        super(name,levelOfLife,attackForce);
+        this.spellName = "eclair";
+        this.spellAttackLevel = 2;
     }
 
 
 
+    public Wizard (String name, int levelOfLife, int attackForce, String spellName, int spellAttackLevel , String potion){
+        super(name,levelOfLife,attackForce);
+        this.spellName = "eclair";
+        this.spellAttackLevel = 2;
+        this.potion = potion;
 
+    }
+
+
+
+
+    @Override
     public String toString() {
-        return "le nom du magicien est "+ this.name +
-                " \nson niveau de vie est de " + this.levelOfLife +
-                " \nil a une force d'attaque de " + this.attackForce;
-
-    }
-
-
-
-    public String getName() {
-        return name;
-    }
-
-    public int getLevelOfLife() {
-        return levelOfLife;
-    }
-
-    public int getAttackForce() {
-        return attackForce;
+        return "le nom du magicien est "+ this.getName() +
+                " \nson niveau de vie est de " + this.getLevelOfLife() +
+                " \nil a une force d'attaque de " + this.getAttackForce()+
+                " \nSon sort est  " + this.spellName+
+                " \nDe force  " + this.spellAttackLevel;
     }
 
     public String getSpellName() {
         return spellName;
     }
 
-    public String getPotion() {
-        return potion;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setLevelOfLife(int levelOfLife) {
-        this.levelOfLife = levelOfLife;
-    }
-
-    public void setAttackForce(int attackForce) {
-        this.attackForce = attackForce;
-    }
-
-    public void setSpell(String spellName) {
+    public void setSpellName(String spellName) {
         this.spellName = spellName;
     }
+
     public int getSpellAttackLevel() {
         return spellAttackLevel;
     }
@@ -81,9 +52,20 @@ public class Wizard {
         this.spellAttackLevel = spellAttackLevel;
     }
 
+    public String getPotion() {
+        return potion;
+    }
+
     public void setPotion(String potion) {
         this.potion = potion;
     }
+
+
+
+
+
+
+
 
 
 

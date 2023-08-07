@@ -1,10 +1,17 @@
 import java.util.Scanner;
 
 public class Game {
-    private int boardGame = 64;
-    public int startCasePlayer = 1;
-    public int tour = 0;
-    public int nbGame = 1;
+
+    private int boardGame;
+    public int positionPlayer;
+    public int tour;
+    public int nbGame;
+
+    public Game(int boardGame, int positionPlayer, int tour){
+        this.boardGame = boardGame;
+        this.positionPlayer = positionPlayer;
+        this.tour = tour;
+    }
 
     public int seDeplacer(){
         int virtualDice = (int)(Math.random() * 6) +1;;  // permet d'avoir un chiffre aléatoire en 1 et 6
@@ -13,26 +20,26 @@ public class Game {
 
     public void play(){
         System.out.println("partie numéro : " + nbGame);
-        while (startCasePlayer < boardGame){
-            startCasePlayer = startCasePlayer + seDeplacer();
-            tour ++ ;
-            if (startCasePlayer > 64){
-                startCasePlayer = 64;
+        while (this.positionPlayer < this.boardGame){
+            this.positionPlayer = this.positionPlayer + seDeplacer();
+            this.tour ++ ;
+            if (this.positionPlayer > this.boardGame){
+                this.positionPlayer = this.boardGame;
             }
-            System.out.println("tour " + tour + ":  le joueur est sur la case " + startCasePlayer);
+            System.out.println("tour " + tour + ":  le joueur est sur la case " + this.positionPlayer);
         }
 
         System.out.println("fin de partie ");
 
-        if (startCasePlayer >= boardGame){
+        if (this.positionPlayer >= this.boardGame){
             Scanner user_input = new Scanner(System.in);
             System.out.println("tapez 1 : rejouer" +
                     "\ntapez 2 : quitter");
 
             switch (user_input.next()) {
                 case "1":
-                    startCasePlayer = 1;
-                    tour=0;
+                    this.positionPlayer = 1;
+                    this.tour=1;
                     nbGame++;
                     play();
                     break;
@@ -46,6 +53,30 @@ public class Game {
 
             }
         }
+    }
+
+    public int getBoardGame() {
+        return boardGame;
+    }
+
+    public void setBoardGame(int boardGame) {
+        this.boardGame = boardGame;
+    }
+
+    public int getPositionPlayer() {
+        return positionPlayer;
+    }
+
+    public void setPositionPlayer(int positionPlayer) {
+        this.positionPlayer = positionPlayer;
+    }
+
+    public int getTour() {
+        return tour;
+    }
+
+    public void setTour(int tour) {
+        this.tour = tour;
     }
 
 

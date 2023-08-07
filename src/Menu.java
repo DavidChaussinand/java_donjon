@@ -26,19 +26,21 @@ public class Menu {
 
         switch (user_input.next()) {
             case "1":
-                Warrior dede = createWarrior();
-                System.out.println(dede);
+                Warrior guerrier = createWarrior();
+                System.out.println(guerrier);
                 menu();
                 break;
             case "2":
-                createWizard();
+                Wizard magicien = createWizard();
+                System.out.println(magicien);
                 menu();
                 break;
             case "3":
-                System.out.println("game la partie");
+                Game jouer = new Game(64,1,1);
+                jouer.play();
                 break;
             case "4":
-                System.out.println("merci d'avoir quitter enfoiré");
+                System.out.println("merci d'avoir quitter");
                 return;
             default:
                 System.out.println("choose from 1 to 4");
@@ -75,43 +77,48 @@ public class Menu {
 
     public Warrior createWarrior() {
         Scanner user_input = new Scanner(System.in);
-        levelOfLife = 0;
-        attackForce = 0;
 
         System.out.print("Saisir votre nom de guerrier : ");
         name = user_input.nextLine();
         MenuDansCreation(name, levelOfLife, attackForce);
 
-        System.out.print("Saisir votre niveau de vie entre 5 et 10: ");
-        levelOfLife = user_input.nextInt();
-        user_input.nextLine();
-        MenuDansCreation(name, levelOfLife, attackForce);
-
-        System.out.print("Saisir votre niveau de force entre 5 et 10 : ");
-        attackForce = user_input.nextInt();
-        user_input.nextLine();
-        MenuDansCreation(name, levelOfLife, attackForce);
+        if (levelOfLife ==0){
+            System.out.print("Saisir votre niveau de vie entre 5 et 10: ");
+            levelOfLife = user_input.nextInt();
+            user_input.nextLine();
+            MenuDansCreation(name, levelOfLife, attackForce);
+        }
+        if (attackForce ==0){
+            System.out.print("Saisir votre niveau de force entre 5 et 10 : ");
+            attackForce = user_input.nextInt();
+            user_input.nextLine();
+            MenuDansCreation(name, levelOfLife, attackForce);
+        }
 
         return new Warrior(name, levelOfLife, attackForce);
     }
 
     public Wizard createWizard(){
+
         Scanner user_input = new Scanner(System.in);
         levelOfLife = 0;
         attackForce = 0;
-
-        System.out.print("Saisir votre nom du magicien : ");
-        String name = user_input.nextLine();
+        System.out.print("Saisir votre nom de magicien : ");
+        name = user_input.nextLine();
         MenuDansCreation(name, levelOfLife, attackForce);
 
-        System.out.print("Saisir vos points de vie entre 3 et 6 : ");
-        levelOfLife = user_input.nextInt();
-        MenuDansCreation(name, levelOfLife, attackForce);
-
-        System.out.print("Saisir votre force d'attaquer entre 8 et 15 : ");
-        attackForce = user_input.nextInt();
-
-        MenuDansCreation(name, levelOfLife, attackForce);
+        if (levelOfLife ==0){
+            System.out.print("Saisir votre niveau de vie entre 3 et 6: ");
+            levelOfLife = user_input.nextInt();
+            user_input.nextLine();
+            MenuDansCreation(name, levelOfLife, attackForce);
+        }
+        if (attackForce ==0){
+            System.out.print("Saisir votre niveau de force entre 8 et 15 : ");
+            attackForce = user_input.nextInt();
+            user_input.nextLine();
+            MenuDansCreation(name, levelOfLife, attackForce);
+        }
         return new Wizard(name,levelOfLife,attackForce);
 
     }

@@ -1,80 +1,63 @@
 import java.util.Scanner;
 
-public class Warrior {
+public class Warrior extends Character{
 
-    private String name;
-    private int levelOfLife;
-    private int attackForce;
     private String weaponName;
-
     private int weaponAttackLevel;
     private String shield;
 
-
-    public Warrior (String name, int levelOfLife, int attackForce ){
-        this.name = name;
-        this.levelOfLife = levelOfLife;
-        this.attackForce = attackForce;
-
-    }
-    public Warrior (String name){
-        this.name = name;
+    public Warrior(){
+        this.setLevelOfLife(5);
+        this.setAttackForce(5);
+        this.shield = shield;
+        this.weaponName = "épée";
+        this.weaponAttackLevel = 5;
     }
 
-    public Warrior() {
-        this.name= "ragnar";
-        this.levelOfLife = 5;
-        this.attackForce= 5;
+    public Warrior (String name , int levelOfLife, int attackForce){
+        super(name,levelOfLife,attackForce);
+        this.weaponName = "épée";
+        this.weaponAttackLevel = 5;
+        this.shield = shield;
     }
 
+    public Warrior (String name, int levelOfLife, int attackForce, String weaponName, int weaponAttackLevel , String shield){
+        super(name,levelOfLife,attackForce);
+        this.weaponName = "épée";
+        this.weaponAttackLevel = 5;
+        this.shield = shield;
+
+    }
+
+    @Override
     public String toString() {
-        return " le nom du guerrier est "+ this.name+
-                " \nson niveau de vie est de " + this.levelOfLife +
-                " \nil a une force d'attaque de " + this.attackForce ;
-
-
-
+        return "Le nom du guerrier est "+ this.getName() +
+                " \nSon niveau de vie est de " + this.getLevelOfLife() +
+                " \nIl a une force d'attaque de " + this.getAttackForce()+
+                " \nSon arme est  " + this.weaponName+
+                " \nDe force  " + this.weaponAttackLevel;
 
     }
 
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getLevelOfLife() {
-        return levelOfLife;
-    }
-
-    public void setLevelOfLife(int levelOfLife) {
-        this.levelOfLife = levelOfLife;
-    }
-
-    public int getAttackForce() {
-        return attackForce;
-    }
-
-    public void setAttackForce(int attackForce) {
-        this.attackForce = attackForce;
-    }
     public String getWeaponName() {
-        return weaponName;
+        return this.weaponName;
     }
-    public void setWeapon(String weaponName) {
+
+    public void setWeaponName(String weaponName) {
         this.weaponName = weaponName;
     }
+
     public String getShield() {
-        return shield;
+        return this.shield;
     }
     public void setShield(String shield) {
         this.shield = shield;
     }
+
+
     public int getWeaponAttackLevel() {
-        return weaponAttackLevel;
+        return this.weaponAttackLevel;
     }
 
     public void setWeaponAttackLevel(int weaponAttackLevel) {
