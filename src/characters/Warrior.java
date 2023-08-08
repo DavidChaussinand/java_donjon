@@ -33,8 +33,10 @@ public class Warrior extends Character {
     public String toString() {
         return "Le nom du guerrier est "+ this.getName() +
                 " \nSon niveau de vie est de " + this.getLevelOfLife() +
-                " \nIl a une force d'attaque de " + this.getAttackForce()
-                ;
+                " \nIl a une force d'attaque de " + this.getAttackForce()+
+                " \nSon arme est "+ weapon.getWeaponName() +
+                "\nSa force d'attaque est de "+ weapon.getWeaponAttackLevel();
+
 
     }
 
