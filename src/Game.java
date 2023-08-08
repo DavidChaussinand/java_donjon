@@ -3,41 +3,43 @@ import java.util.Scanner;
 public class Game {
 
     private int boardGame;
-    public int positionPlayer;
-    public int tour;
-    public int nbGame;
+    private int positionPlayer;
+    private int tour;
+    private int nbGame;
 
     public Game(int boardGame, int positionPlayer, int tour){
         this.boardGame = boardGame;
         this.positionPlayer = positionPlayer;
         this.tour = tour;
     }
-
-    public int seDeplacer(){
-        int virtualDice = (int)(Math.random() * 6) +1;;  // permet d'avoir un chiffre aléatoire en 1 et 6
-        return virtualDice;
+    public Game(){
+        this.positionPlayer = 1;
     }
 
 
 
     public void play() throws PersonnageHorsPlateauException {
+        Menu dice = new Menu();
 
         System.out.println("partie numéro : " + nbGame);
         while (this.positionPlayer < this.boardGame){
+            try{
+                int move = dice.rollTheDice();
+                this.positionPlayer = this.positionPlayer + move;
+                this.tour ++ ;
+                System.out.println("tour " + tour + ":  le joueur est sur la case " + this.positionPlayer);
 
-            this.positionPlayer = this.positionPlayer + seDeplacer();
-            this.tour ++ ;
+                if (this.positionPlayer > this.boardGame){
+                    throw new PersonnageHorsPlateauException(" Tu es sorti du plateau : BRAVO");
+                }
 
-            if (this.positionPlayer > this.boardGame){
-                throw new PersonnageHorsPlateauException("Tu es sorti du plateau : game over");
+            } catch (PersonnageHorsPlateauException e){
+                System.out.println("vous avez gagné en dépassant la case finale"+ e.getMessage());
             }
-
-            System.out.println("tour " + tour + ":  le joueur est sur la case " + this.positionPlayer);
-
 
         }
 
-        System.out.println("fin de partie ,vous avez gagné");
+        System.out.println("Fin de partie ,vous avez gagné");
 
         if (this.positionPlayer >= this.boardGame){
             Scanner user_input = new Scanner(System.in);
@@ -57,10 +59,13 @@ public class Game {
 
                 default:
                     System.out.println("choose from 1 to 2");
-
-
             }
         }
+    }
+
+    public int seDeplacer(){
+        int virtualDice = (int)(Math.random() * 6) +1;;  // permet d'avoir un chiffre aléatoire en 1 et 6
+        return virtualDice;
     }
 
     public int getBoardGame() {
@@ -85,6 +90,14 @@ public class Game {
 
     public void setTour(int tour) {
         this.tour = tour;
+    }
+
+    public int getNbGame() {
+        return nbGame;
+    }
+
+    public void setNbGame(int nbGame) {
+        this.nbGame = nbGame;
     }
 
 

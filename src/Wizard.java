@@ -2,25 +2,32 @@ import java.awt.Image;
 
 public class Wizard extends Character{
 
-    private String spellName;
 
-    private int spellAttackLevel;
+
+    private Spell spell;
     private String potion;
+
+    public Wizard(){
+        super();
+        this.spell = new Spell("eclair",2);
+        this.potion = "potion de vie";
+
+    }
 
 
     public Wizard (String name , int levelOfLife, int attackForce){
         super(name,levelOfLife,attackForce);
-        this.spellName = "eclair";
-        this.spellAttackLevel = 2;
+        this.spell = new Spell("eclair",2);
+        this.potion = "potion de vie";
     }
 
 
 
-    public Wizard (String name, int levelOfLife, int attackForce, String spellName, int spellAttackLevel , String potion){
+    public Wizard (String name, int levelOfLife, int attackForce , String potion ,Spell spell){
         super(name,levelOfLife,attackForce);
-        this.spellName = "eclair";
-        this.spellAttackLevel = 2;
         this.potion = potion;
+        this.spell = spell;
+
 
     }
 
@@ -31,26 +38,11 @@ public class Wizard extends Character{
     public String toString() {
         return "le nom du magicien est "+ this.getName() +
                 " \nson niveau de vie est de " + this.getLevelOfLife() +
-                " \nil a une force d'attaque de " + this.getAttackForce()+
-                " \nSon sort est  " + this.spellName+
-                " \nDe force  " + this.spellAttackLevel;
+                " \nil a une force d'attaque de " + this.getAttackForce()
+                ;
     }
 
-    public String getSpellName() {
-        return spellName;
-    }
 
-    public void setSpellName(String spellName) {
-        this.spellName = spellName;
-    }
-
-    public int getSpellAttackLevel() {
-        return spellAttackLevel;
-    }
-
-    public void setSpellAttackLevel(int spellAttackLevel) {
-        this.spellAttackLevel = spellAttackLevel;
-    }
 
     public String getPotion() {
         return potion;
@@ -58,6 +50,14 @@ public class Wizard extends Character{
 
     public void setPotion(String potion) {
         this.potion = potion;
+    }
+
+    public Spell getSpell() {
+        return spell;
+    }
+
+    public void setSpell(Spell spell) {
+        this.spell = spell;
     }
 
 

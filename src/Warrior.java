@@ -2,51 +2,41 @@ import java.util.Scanner;
 
 public class Warrior extends Character{
 
-    private String weaponName;
-    private int weaponAttackLevel;
+
+
+    private Weapon weapon;
     private String shield;
 
     public Warrior(){
-        this.setLevelOfLife(5);
-        this.setAttackForce(5);
-        this.shield = shield;
-        this.weaponName = "épée";
-        this.weaponAttackLevel = 5;
+        super();
+        this.weapon = new Weapon("main nue",2);
+        this.shield = "bouclier";
+
     }
 
     public Warrior (String name , int levelOfLife, int attackForce){
         super(name,levelOfLife,attackForce);
-        this.weaponName = "épée";
-        this.weaponAttackLevel = 5;
-        this.shield = shield;
+        this.weapon = new Weapon("main nue",2);
+        this.shield = "bouclier";
     }
 
-    public Warrior (String name, int levelOfLife, int attackForce, String weaponName, int weaponAttackLevel , String shield){
+    public Warrior (String name, int levelOfLife, int attackForce, String shield,Weapon weapon){
         super(name,levelOfLife,attackForce);
-        this.weaponName = "épée";
-        this.weaponAttackLevel = 5;
         this.shield = shield;
-
+        this.weapon = weapon;
     }
 
     @Override
     public String toString() {
         return "Le nom du guerrier est "+ this.getName() +
                 " \nSon niveau de vie est de " + this.getLevelOfLife() +
-                " \nIl a une force d'attaque de " + this.getAttackForce()+
-                " \nSon arme est  " + this.weaponName+
-                " \nDe force  " + this.weaponAttackLevel;
+                " \nIl a une force d'attaque de " + this.getAttackForce()
+                ;
 
     }
 
 
-    public String getWeaponName() {
-        return this.weaponName;
-    }
 
-    public void setWeaponName(String weaponName) {
-        this.weaponName = weaponName;
-    }
 
     public String getShield() {
         return this.shield;
@@ -55,14 +45,16 @@ public class Warrior extends Character{
         this.shield = shield;
     }
 
-
-    public int getWeaponAttackLevel() {
-        return this.weaponAttackLevel;
+    public Weapon getWeapon() {
+        return weapon;
     }
 
-    public void setWeaponAttackLevel(int weaponAttackLevel) {
-        this.weaponAttackLevel = weaponAttackLevel;
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
     }
+
+
+
 
 
 
