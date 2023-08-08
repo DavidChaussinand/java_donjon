@@ -1,6 +1,9 @@
-import java.awt.Image;
+package characters;
 
-public class Wizard extends Character{
+import Weapons.Spell;
+import characters.Character;
+
+public class Wizard extends Character {
 
 
 
@@ -23,7 +26,7 @@ public class Wizard extends Character{
 
 
 
-    public Wizard (String name, int levelOfLife, int attackForce , String potion ,Spell spell){
+    public Wizard (String name, int levelOfLife, int attackForce , String potion , Spell spell){
         super(name,levelOfLife,attackForce);
         this.potion = potion;
         this.spell = spell;

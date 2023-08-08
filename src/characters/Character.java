@@ -1,3 +1,5 @@
+package characters;
+
 public abstract class Character {
 
     private String name;
@@ -24,7 +26,7 @@ public abstract class Character {
 
     @Override
     public String toString() {
-        return "Character{" +
+        return "characters.Character{" +
                 "name='" + name + '\'' +
                 ", levelOfLife=" + levelOfLife +
                 ", attackForce=" + attackForce +

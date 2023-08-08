@@ -1,4 +1,8 @@
-import java.util.ArrayList;
+import characters.Character;
+import characters.Warrior;
+import characters.Wizard;
+import exceptions.PersonnageHorsPlateauException;
+
 import java.util.Objects;
 import java.util.Scanner;
 public class Menu {
@@ -55,6 +59,7 @@ public class Menu {
 
     public int rollTheDice (){
         Game dice = new Game();
+
         Scanner user_input = new Scanner(System.in);
         System.out.println("tapez 1 : pour lancer le dé" +
                 "\ntapez 2 : quitter" );

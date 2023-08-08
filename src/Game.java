@@ -1,3 +1,7 @@
+import components.DiceInterface;
+import components.TwoDice;
+import exceptions.PersonnageHorsPlateauException;
+
 import java.util.Scanner;
 
 public class Game {
@@ -64,8 +68,8 @@ public class Game {
     }
 
     public int seDeplacer(){
-        int virtualDice = (int)(Math.random() * 6) +1;;  // permet d'avoir un chiffre aléatoire en 1 et 6
-        return virtualDice;
+        DiceInterface dice = new TwoDice();
+        return dice.rollTheDice();
     }
 
     public int getBoardGame() {

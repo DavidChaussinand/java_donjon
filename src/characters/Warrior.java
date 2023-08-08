@@ -1,6 +1,9 @@
-import java.util.Scanner;
+package characters;
 
-public class Warrior extends Character{
+import Weapons.Weapon;
+import characters.Character;
+
+public class Warrior extends Character {
 
 
 
@@ -20,7 +23,7 @@ public class Warrior extends Character{
         this.shield = "bouclier";
     }
 
-    public Warrior (String name, int levelOfLife, int attackForce, String shield,Weapon weapon){
+    public Warrior (String name, int levelOfLife, int attackForce, String shield, Weapon weapon){
         super(name,levelOfLife,attackForce);
         this.shield = shield;
         this.weapon = weapon;
