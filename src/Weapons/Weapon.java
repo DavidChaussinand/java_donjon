@@ -1,5 +1,7 @@
 package Weapons;
 
+import components.Case;
+
 public class Weapon {
 
 

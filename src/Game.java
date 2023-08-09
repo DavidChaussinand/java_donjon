@@ -1,7 +1,12 @@
-import components.DiceInterface;
-import components.TwoDice;
+import Weapons.Arme;
+import Weapons.Potion;
+import characters.Ennemi;
+import components.*;
+import exceptions.IndexOutOfBoundsException;
 import exceptions.PersonnageHorsPlateauException;
 
+import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
@@ -9,51 +14,70 @@ public class Game {
     private int boardGame;
     private int positionPlayer;
     private int tour;
-    private int nbGame;
+    private int nbGame= 1;
 
-    public Game(int boardGame, int positionPlayer, int tour){
-        this.boardGame = boardGame;
-        this.positionPlayer = positionPlayer;
-        this.tour = tour;
-    }
+    ArrayList<Case> board;
+
+
+
+
+
+
+//    public Game(int boardGame, int positionPlayer, int tour){
+//        this.boardGame = boardGame;
+//        this.positionPlayer = positionPlayer;
+//        this.tour = tour;
+//    }
+
     public Game(){
-        this.positionPlayer = 1;
+        initializationBoard();
     }
 
-
+    public void initializationBoard(){
+        this.board= new ArrayList<>();
+        this.board.add(new CaseEmpty("case", "vide"));
+        this.board.add(new Ennemi("ennemi",1,2));
+        this.board.add(new Arme("case Arme","Epée",5));
+        this.board.add(new Potion("potion magique","soin",2));
+    }
 
     public void play() throws PersonnageHorsPlateauException {
         Menu dice = new Menu();
-
         System.out.println("partie numéro : " + nbGame);
-        while (this.positionPlayer < this.boardGame){
-            try{
+        boolean playInProgess = true;
+        System.out.println("la parti est : " + playInProgess);
+        while (this.positionPlayer < this.board.size() && playInProgess){
+
                 int move = dice.rollTheDice();
                 this.positionPlayer = this.positionPlayer + move;
+                System.out.println(this.board.get(this.positionPlayer-1));    // tableau commence index 0, la position du joueur est à 1 : donc positionJoueur -1 .
+                System.out.println("la parti est : " + playInProgess);
+
                 this.tour ++ ;
                 System.out.println("tour " + tour + ":  le joueur est sur la case " + this.positionPlayer);
-
-                if (this.positionPlayer > this.boardGame){
+            try{
+                if (this.positionPlayer > this.board.size()){
                     throw new PersonnageHorsPlateauException(" Tu es sorti du plateau : BRAVO");
                 }
 
             } catch (PersonnageHorsPlateauException e){
                 System.out.println("vous avez gagné en dépassant la case finale"+ e.getMessage());
+                playInProgess = false;
+                System.out.println("la parti est : " + playInProgess);
             }
 
         }
-
         System.out.println("Fin de partie ,vous avez gagné");
 
-        if (this.positionPlayer >= this.boardGame){
+        if (this.positionPlayer >= this.board.size()){
             Scanner user_input = new Scanner(System.in);
             System.out.println("tapez 1 : rejouer" +
                     "\ntapez 2 : quitter");
 
             switch (user_input.next()) {
                 case "1":
-                    this.positionPlayer = 1;
-                    this.tour=1;
+                    this.positionPlayer = 0;
+                    this.tour=0;
                     nbGame++;
                     play();
                     break;
@@ -68,7 +92,7 @@ public class Game {
     }
 
     public int seDeplacer(){
-        DiceInterface dice = new TwoDice();
+        DiceInterface dice = new FakeDice();
         return dice.rollTheDice();
     }
 

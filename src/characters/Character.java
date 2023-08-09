@@ -27,14 +27,14 @@ public abstract class Character {
     @Override
     public String toString() {
         return "characters.Character{" +
-                "name='" + name + '\'' +
-                ", levelOfLife=" + levelOfLife +
-                ", attackForce=" + attackForce +
+                "name='" + this.name + '\'' +
+                ", levelOfLife=" + this.levelOfLife +
+                ", attackForce=" + this.attackForce +
                 '}';
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -42,7 +42,7 @@ public abstract class Character {
     }
 
     public int getLevelOfLife() {
-        return levelOfLife;
+        return this.levelOfLife;
     }
 
     public void setLevelOfLife(int levelOfLife) {
@@ -50,7 +50,7 @@ public abstract class Character {
     }
 
     public int getAttackForce() {
-        return attackForce;
+        return this.attackForce;
     }
 
     public void setAttackForce(int attackForce) {

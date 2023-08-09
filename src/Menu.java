@@ -42,7 +42,7 @@ public class Menu {
                 break;
             case "3":
 
-                Game jouer = new Game(64,1,1);
+                Game jouer = new Game();
                 jouer.play();
                 break;
             case "4":
@@ -59,11 +59,9 @@ public class Menu {
 
     public int rollTheDice (){
         Game dice = new Game();
-
         Scanner user_input = new Scanner(System.in);
         System.out.println("tapez 1 : pour lancer le dé" +
                 "\ntapez 2 : quitter" );
-
         String choix = user_input.next();
 
         switch (choix) {
@@ -76,7 +74,6 @@ public class Menu {
             default:
                 System.out.println("choose from 1 to 2");
                 rollTheDice();
-
         }
         return dice.seDeplacer();
 
