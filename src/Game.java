@@ -2,6 +2,7 @@ import Weapons.*;
 import Weapons.ArmeWarrior.ArmeWarrior;
 import Weapons.ArmeWarrior.Mace;
 import Weapons.ArmeWarrior.Sword;
+import Weapons.ArmeWizard.ArmeWizard;
 import Weapons.ArmeWizard.FireBall;
 import Weapons.ArmeWizard.Lightning;
 import characters.Character;
@@ -18,7 +19,7 @@ import java.util.Scanner;
 
 public class Game {
 
-    private int boardGame;
+
     private int positionPlayer;
     private int tour;
 
@@ -33,13 +34,18 @@ public class Game {
         this.board= new ArrayList<>();
         this.board.add(new CaseEmpty("case", "vide"));
         this.board.add(new Mace("case massue","massue"));
-        this.board.add(new Sword("case épée", "épéé lunaire"));
+        this.board.add(new FireBall("case magicien","boule de feu"));
+        this.board.add(new BigPotion("case potion"));
+        this.board.add(new StandardLifePotion("case potion"));
+        this.board.add(new Sword("case arme warrior","épée"));
+        this.board.add(new FireBall("case magicien","boule de feu"));
 
     }
 
     public void play(Character perso) throws PersonnageHorsPlateauException {
         Menu dice = new Menu();
         boolean playInProgess = true;
+
         Character perso1 = new Warrior();
 
 
@@ -47,12 +53,25 @@ public class Game {
         int i = 0;
 
         while (this.positionPlayer < this.board.size() && playInProgess){
-                System.out.println(perso1);
+
                 int move = dice.rollTheDice();
                 this.positionPlayer = this.positionPlayer + move;
 
                 Case currentCase = board.get(i);
-                System.out.println(currentCase);
+
+
+
+                if (currentCase instanceof ArmeWarrior){
+                    System.out.println(currentCase.interaction(perso1));
+                }
+                if  (currentCase instanceof ArmeWizard){
+                    System.out.println(currentCase.interaction(perso1));
+                }
+                if (currentCase instanceof Potion){
+                    System.out.println(currentCase.interaction(perso1));
+                }
+
+
 
                 System.out.println(this.board.get(this.positionPlayer-1));    // tableau commence index 0, la position du joueur est à 1 : donc positionJoueur -1 .
                 System.out.println("la parti est : " + playInProgess);
@@ -104,13 +123,7 @@ public class Game {
 
 
 
-    public int getBoardGame() {
-        return this.boardGame;
-    }
 
-    public void setBoardGame(int boardGame) {
-        this.boardGame = boardGame;
-    }
 
     public int getPositionPlayer() {
         return this.positionPlayer;
