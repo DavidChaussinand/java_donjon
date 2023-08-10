@@ -1,3 +1,8 @@
+import Weapons.ArmeWizard.Lightning;
+import Weapons.BigPotion;
+import ennemy.Dragon;
+import ennemy.Goblin;
+import ennemy.Sorcerer;
 import exceptions.PersonnageHorsPlateauException;
 
 public class Main {
@@ -5,9 +10,6 @@ public class Main {
 
         Menu menu = new Menu();
         menu.menu();
-
-
-
 
     }
 

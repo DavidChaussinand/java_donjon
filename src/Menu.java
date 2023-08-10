@@ -5,23 +5,8 @@ import exceptions.PersonnageHorsPlateauException;
 
 import java.util.Objects;
 import java.util.Scanner;
+
 public class Menu {
-
-    private String name;
-    private int levelOfLife;
-    private int attackForce;
-
-
-    public void showMenu(){
-
-
-        System.out.println("voici le menu :  choix ");
-        System.out.println("tapez 1  : pour créer un guerrier ");
-        System.out.println("tapez 2  : pour créer un magicien");
-        System.out.println("tapez 3  : pour démarrer le jeu");
-        System.out.println("tapez 4  : pour quitter");
-    }
-
 
     public void menu() throws PersonnageHorsPlateauException {
         Character perso = null;
@@ -34,16 +19,18 @@ public class Menu {
                 perso = createWarrior();
                 System.out.println(perso);
                 menu();
+
                 break;
             case "2":
                 perso = createWizard();
                 System.out.println(perso);
+
                 menu();
                 break;
             case "3":
 
                 Game jouer = new Game();
-                jouer.play();
+                jouer.play(perso);
                 break;
             case "4":
                 System.out.println("merci d'avoir quitter");
@@ -55,7 +42,15 @@ public class Menu {
         }
     }
 
+    public void showMenu(){
 
+
+        System.out.println("voici le menu :  choix ");
+        System.out.println("tapez 1  : pour créer un guerrier ");
+        System.out.println("tapez 2  : pour créer un magicien");
+        System.out.println("tapez 3  : pour démarrer le jeu");
+        System.out.println("tapez 4  : pour quitter");
+    }
 
     public int rollTheDice (){
         Game dice = new Game();
@@ -66,7 +61,7 @@ public class Menu {
 
         switch (choix) {
             case "1":
-                dice.seDeplacer();
+                dice.move();
                 break;
             case "2":
                 System.out.println("merci d'avoir quitter");
@@ -75,47 +70,52 @@ public class Menu {
                 System.out.println("choose from 1 to 2");
                 rollTheDice();
         }
-        return dice.seDeplacer();
+        return dice.move();
 
     }
 
     public Warrior createWarrior() {
         Scanner user_input = new Scanner(System.in);
+        Warrior warrior = new Warrior();
+
         System.out.print("Saisir votre nom de guerrier : ");
-        name = user_input.nextLine();
+        warrior.setName(user_input.nextLine());
+
         System.out.print("Saisir votre niveau de vie entre 5 et 10: ");
-        levelOfLife = user_input.nextInt();
+        warrior.setLevelOfLife(user_input.nextInt());
         user_input.nextLine();
+
         System.out.print("Saisir votre niveau de force entre 5 et 10 : ");
-        attackForce = user_input.nextInt();
+        warrior.setAttackForce(user_input.nextInt());
         user_input.nextLine();
 
-        //updateCharacter(name, levelOfLife, attackForce);
+        updateCharacter(warrior);
 
-        return new Warrior(name, levelOfLife, attackForce);
+        return warrior;
     }
 
-    public Wizard createWizard(){
-
+    public Wizard createWizard() {
         Scanner user_input = new Scanner(System.in);
+        Wizard wizard = new Wizard();
+
         System.out.print("Saisir votre nom de magicien : ");
-        name = user_input.nextLine();
+        wizard.setName(user_input.nextLine());
+
         System.out.print("Saisir votre niveau de vie entre 3 et 6: ");
-        levelOfLife = user_input.nextInt();
+        wizard.setLevelOfLife(user_input.nextInt());
         user_input.nextLine();
+
         System.out.print("Saisir votre niveau de force entre 8 et 15 : ");
-        attackForce = user_input.nextInt();
+        wizard.setAttackForce(user_input.nextInt());
         user_input.nextLine();
 
-        updateCharacter(name, levelOfLife, attackForce);
+        updateCharacter(wizard);
 
-        return new Wizard(name,levelOfLife,attackForce);
-
+        return wizard;
     }
 
-    public void updateCharacter(String nameold, int levelOfLifeold, int attackForceold) {
+    public void updateCharacter(Character character) {
         Scanner user_input = new Scanner(System.in);
-        Character perso = null;
 
         System.out.println("tapez 1 : pour afficher les infos du perso en cours de création" +
                 "\ntapez 2 : pour modifier ses infos" +
@@ -124,22 +124,27 @@ public class Menu {
         String choix = user_input.next();
 
         if (Objects.equals(choix, "1")) {
-            System.out.println("Nom: " + name);
-            System.out.println("Points de vie: " + levelOfLife);
-            System.out.println("Force d'attaque: " + attackForce);
+            System.out.println("Nom: " + character.getName());
+            System.out.println("Points de vie: " + character.getLevelOfLife());
+            System.out.println("Force d'attaque: " + character.getAttackForce());
         } else if (Objects.equals(choix, "2")) {
             user_input.nextLine();
             System.out.print("Nouveau nom : ");
-            name = user_input.nextLine();
+            String newName = user_input.nextLine();
             System.out.print("Nouvelle valeur des points de vie : ");
-            levelOfLife = user_input.nextInt();
+            int newLevelOfLife = user_input.nextInt();
             System.out.print("Nouvelle valeur de la force d'attaque : ");
-            attackForce = user_input.nextInt();
+            int newAttackForce = user_input.nextInt();
+
+            character.setName(newName);
+            character.setLevelOfLife(newLevelOfLife);
+            character.setAttackForce(newAttackForce);
+
         } else if (Objects.equals(choix, "3")) {
             return;
         }
 
-        updateCharacter(name, levelOfLife, attackForce);
+        updateCharacter(character);
     }
 
 
@@ -147,10 +152,8 @@ public class Menu {
 
 
 
+
 }
-
-
-
 
 
 

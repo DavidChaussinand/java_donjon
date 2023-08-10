@@ -1,25 +1,23 @@
-package Weapons;
+package ennemy;
 
 import components.Case;
 
-public class Arme extends Case {
+public class Ennemi extends Case {
 
 
 
 
-
-
-    public Arme(String contentCase) {
+    public Ennemi(String contentCase) {
         super(contentCase);
-
-    }
+            }
 
     @Override
     public String toString() {
-        return "Arme{" +
+        return "Ennemi{ "  +
                 "contentCase = " + this.getContentCase() +
-               '}';
+                '}';
     }
+
 
 
 
