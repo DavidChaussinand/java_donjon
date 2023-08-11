@@ -7,6 +7,8 @@ import characters.Character;
 import characters.Warrior;
 import characters.Wizard;
 
+import java.util.ArrayList;
+
 public abstract class Case {
 
     private String contentCase;
@@ -16,16 +18,34 @@ public abstract class Case {
         this.contentCase = contentCase;
     }
 
-    public String interaction(Character character) {
+    public void interaction(Character character) {
 
+        if (character instanceof Warrior ) {
+            if  (this instanceof ArmeWizard){
+                System.out.println("certe arme est pour un magicien N'y touche pas ");
+            }
+            if (this instanceof ArmeWarrior){
+                System.out.println("prend cette arme guerrier");
+            } if (this instanceof Potion){
+                System.out.println(" prend mon ami");
+            }
 
-        if (character instanceof Warrior ){
-            return "tu peux ramasser ton arme guerrier";
-        } else if (character instanceof Wizard){
-            return "certe arme est pour un magicien";
-        } else {
-            return " prend mon ami";
         }
+        else if (character instanceof Wizard) {
+            if  (this instanceof ArmeWizard){
+                System.out.println(" magicien prend ton arme");
+            }
+            if (this instanceof ArmeWarrior){
+                System.out.println("cette arme est pour un guerrier, pas touche");
+            }
+            if (this instanceof Potion){
+                System.out.println(" prend mon ami");
+            }
+        }
+
+
+
+
 
     }
 

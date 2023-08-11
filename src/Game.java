@@ -7,6 +7,7 @@ import Weapons.ArmeWizard.FireBall;
 import Weapons.ArmeWizard.Lightning;
 import characters.Character;
 import characters.Warrior;
+import characters.Wizard;
 import ennemy.Dragon;
 import ennemy.Ennemi;
 import components.*;
@@ -36,9 +37,11 @@ public class Game {
         this.board.add(new Mace("case massue","massue"));
         this.board.add(new FireBall("case magicien","boule de feu"));
         this.board.add(new BigPotion("case potion"));
+        this.board.add(new CaseEmpty("case", "vide"));
         this.board.add(new StandardLifePotion("case potion"));
         this.board.add(new Sword("case arme warrior","épée"));
         this.board.add(new FireBall("case magicien","boule de feu"));
+        this.board.add(new Lightning("case magicien","éclair"));
 
     }
 
@@ -46,7 +49,7 @@ public class Game {
         Menu dice = new Menu();
         boolean playInProgess = true;
 
-        Character perso1 = new Warrior();
+        Character perso1 = new Wizard();
 
 
         System.out.println("la parti est : " + playInProgess);
@@ -58,22 +61,9 @@ public class Game {
                 this.positionPlayer = this.positionPlayer + move;
 
                 Case currentCase = board.get(i);
-
-
-
-                if (currentCase instanceof ArmeWarrior){
-                    System.out.println(currentCase.interaction(perso1));
-                }
-                if  (currentCase instanceof ArmeWizard){
-                    System.out.println(currentCase.interaction(perso1));
-                }
-                if (currentCase instanceof Potion){
-                    System.out.println(currentCase.interaction(perso1));
-                }
-
-
-
                 System.out.println(this.board.get(this.positionPlayer-1));    // tableau commence index 0, la position du joueur est à 1 : donc positionJoueur -1 .
+                currentCase.interaction(perso1);
+
                 System.out.println("la parti est : " + playInProgess);
 
                 this.tour ++ ;
