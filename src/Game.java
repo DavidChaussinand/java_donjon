@@ -28,7 +28,7 @@ public class Game {
     private ArrayList<Case> board;
 
     public Game(){
-        initializationBoard();
+        initializationBoardRandom();
     }
 
     public void initializationBoard(){
@@ -64,7 +64,7 @@ public class Game {
             }
 
             else if(i == 28 || i == 41 ) {
-                this.board.add(new BigPotion());;
+                this.board.add(new BigPotion());
             }
             else{
                 this.board.add(new CaseEmpty());
@@ -72,16 +72,46 @@ public class Game {
 
 
         }
+    }
+    public void initializationBoardRandom(){
+        this.board= new ArrayList<>(14);
+        for (int i=0; i<14; i++) {
+            this.board.add(i,null);
+        }
+        int nombreDragon = 4;
+        int sorcier = 10;
+        int goblin = 10;
+        int mace = 5 ;
+        int sword = 4;
+        int lightning = 5;
+        int fireball = 2;
+        int potionStandard = 6;
+        int bigPotions = 2 ;
+
+
+    for (int j = 0 ; j <14; j++){
+
+        for (int i = 0 ; i <nombreDragon ; i++){
+            j = (int)(Math.random() * 14) +1;
+            this.board.set(j,new Dragon());
+        }
+
+        for (int i = 0 ; i <sorcier; i++){
+            j = (int)(Math.random() * 14) +1;
+            this.board.set(j,new Sorcerer());
+        }
 
 
 
-
-
+    }
 
 
 
 
     }
+
+
+
 
     public void play(Character perso) throws PersonnageHorsPlateauException {
         Menu dice = new Menu();
