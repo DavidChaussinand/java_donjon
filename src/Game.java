@@ -33,15 +33,53 @@ public class Game {
 
     public void initializationBoard(){
         this.board= new ArrayList<>();
-        this.board.add(new CaseEmpty("case", "vide"));
-        this.board.add(new Mace("case massue","massue"));
-        this.board.add(new FireBall("case magicien","boule de feu"));
-        this.board.add(new BigPotion("case potion"));
-        this.board.add(new CaseEmpty("case", "vide"));
-        this.board.add(new StandardLifePotion("case potion"));
-        this.board.add(new Sword("case arme warrior","épée"));
-        this.board.add(new FireBall("case magicien","boule de feu"));
-        this.board.add(new Lightning("case magicien","éclair"));
+
+        for (int i = 1;  i < 65 ; i++){
+
+            if(i == 45 || i == 52 || i == 56 || i == 62){
+                this.board.add(new Dragon());
+            }
+            else if(i == 10 || i == 20 || i == 25 || i == 32 || i == 36 || i == 37 || i == 40 || i == 44 || i == 47){
+                this.board.add(new Sorcerer());
+            }
+            else if(i == 3 || i == 6 || i == 9 || i == 12 || i == 15 || i == 18 || i == 21 || i == 24 || i == 27 || i == 30){
+                this.board.add(new Goblin());
+            }
+            else if(i == 2 || i == 11 || i == 5 || i == 22 || i == 38){
+                this.board.add(new Mace());
+            }
+
+            else if(i == 19 || i == 26 || i == 42 || i == 53){
+                this.board.add(new Sword());
+            }
+            else if(i == 1 || i == 4 || i == 8 || i == 17 || i == 23) {
+                this.board.add(new Lightning());
+            }
+
+            else if(i == 48 || i == 49 ) {
+                this.board.add(new FireBall());
+            }
+            else if(i == 7 || i == 13 || i == 31 || i == 33 || i == 39 || i == 43) {
+                this.board.add(new StandardLifePotion());
+            }
+
+            else if(i == 28 || i == 41 ) {
+                this.board.add(new BigPotion());;
+            }
+            else{
+                this.board.add(new CaseEmpty());
+            }
+
+
+        }
+
+
+
+
+
+
+
+
 
     }
 
@@ -49,20 +87,22 @@ public class Game {
         Menu dice = new Menu();
         boolean playInProgess = true;
 
-        Character perso1 = new Wizard();
+        Character perso1 = new Wizard("dada",5,5,"oui",new Spell("rien",0));
+        System.out.println(perso1);
 
 
-        System.out.println("la parti est : " + playInProgess);
-        int i = 0;
+        System.out.println("la parti est : " + playInProgess + "\n");
+        int j = 0;
 
         while (this.positionPlayer < this.board.size() && playInProgess){
 
                 int move = dice.rollTheDice();
                 this.positionPlayer = this.positionPlayer + move;
 
-                Case currentCase = board.get(i);
+                Case currentCase = board.get(j);
                 System.out.println(this.board.get(this.positionPlayer-1));    // tableau commence index 0, la position du joueur est à 1 : donc positionJoueur -1 .
                 currentCase.interaction(perso1);
+                System.out.println(perso1);
 
                 System.out.println("la parti est : " + playInProgess);
 
@@ -79,7 +119,7 @@ public class Game {
                 playInProgess = false;
                 System.out.println("la parti est : " + playInProgess);
             }
-            i++;
+            j++;
 
 
         }

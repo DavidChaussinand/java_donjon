@@ -1,70 +1,46 @@
 package components;
 
 import Weapons.ArmeWarrior.ArmeWarrior;
+import Weapons.ArmeWarrior.Mace;
+import Weapons.ArmeWarrior.Sword;
 import Weapons.ArmeWizard.ArmeWizard;
 import Weapons.Potion;
 import characters.Character;
 import characters.Warrior;
 import characters.Wizard;
+import ennemy.Ennemi;
 
 import java.util.ArrayList;
 
 public abstract class Case {
 
-    private String contentCase;
+    private String name;
     private Object Case;
 
-    public Case(String contentCase) {
-        this.contentCase = contentCase;
+    public Case(String name) {
+        this.name = name;
     }
 
-    public void interaction(Character character) {
-
-        if (character instanceof Warrior ) {
-            if  (this instanceof ArmeWizard){
-                System.out.println("certe arme est pour un magicien N'y touche pas ");
-            }
-            if (this instanceof ArmeWarrior){
-                System.out.println("prend cette arme guerrier");
-            } if (this instanceof Potion){
-                System.out.println(" prend mon ami");
-            }
-
-        }
-        else if (character instanceof Wizard) {
-            if  (this instanceof ArmeWizard){
-                System.out.println(" magicien prend ton arme");
-            }
-            if (this instanceof ArmeWarrior){
-                System.out.println("cette arme est pour un guerrier, pas touche");
-            }
-            if (this instanceof Potion){
-                System.out.println(" prend mon ami");
-            }
-        }
+    public abstract void interaction (Character character);
 
 
-
-
-
-    }
 
 
 
     @Override
     public String toString() {
         return "Case{" +
-                "contentCase='" + this.contentCase + '\'' +
+                "nameCase='" + this.name + '\'' +
                 '}';
     }
 
 
-    public String getContentCase() {
-        return this.contentCase;
+    public String getName() {
+        return this.name;
     }
 
-    public void setContentCase(String contentCase) {
-        this.contentCase = contentCase;
+    public void setName(String contentCase) {
+        this.name = contentCase;
     }
 
 }

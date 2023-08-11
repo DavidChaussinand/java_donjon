@@ -1,34 +1,38 @@
 package components;
 
+import Weapons.ArmeWarrior.Mace;
+import characters.Character;
+import characters.Warrior;
+
 public class CaseEmpty extends Case{
 
 
-    private String CaseEmpty;
+    public void interaction (Character character){
+
+        if (character instanceof Warrior) {
+            if (this instanceof CaseEmpty){
+                System.out.println("case sans interaction");
+            }
+        }
+    }
 
 
-    public CaseEmpty(String contentCase, String caseEmpty) {
-        super(contentCase);
-        CaseEmpty = caseEmpty;
+    public CaseEmpty() {
+        super("caseEmpty");
+
     }
 
 
     @Override
     public String toString() {
         return "CaseEmpty{" +
-                "contentCase = " + this.getContentCase() +
-                "CaseEmpty='" + this.CaseEmpty + '\'' +
+                "nameCase = " + this.getName() +
                 '}';
     }
 
 
 
-    public String getCaseEmpty() {
-        return this.CaseEmpty;
-    }
 
-    public void setCaseEmpty(String caseEmpty) {
-        this.CaseEmpty = caseEmpty;
-    }
 
 
 }

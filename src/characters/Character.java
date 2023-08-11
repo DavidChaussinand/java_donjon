@@ -18,8 +18,8 @@ public abstract class Character {
     }
     public Character() {
         this.name = "ragnard";
-        this.levelOfLife = 5;
-        this.attackForce= 5;
+        this.levelOfLife = 1;
+        this.attackForce= 1;
     }
 
 

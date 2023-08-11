@@ -1,13 +1,24 @@
 package ennemy;
 
+import characters.Character;
+
 public class Sorcerer extends Ennemi{
     private int attackForce;
     private int levelOfLife;
 
-    public Sorcerer(String contentCase) {
-        super(contentCase);
+    public Sorcerer() {
+        super("sorcerer");
         this.levelOfLife = 9;
         this.attackForce = 2;
+
+    }
+
+    public void interaction(Character character){
+
+        if (this instanceof Sorcerer){
+            System.out.println("Un Sorcier arrive");
+            //character.setAttackForce(character.getAttackForce()+5);
+        }
 
     }
 
@@ -15,7 +26,7 @@ public class Sorcerer extends Ennemi{
     @Override
     public String toString() {
         return "Sorcier{" +
-                this.getContentCase() +
+                this.getName() +
                 ",  attackForce = " + this.attackForce +
                 ", levelOfLife = " + this.levelOfLife +
                 '}';

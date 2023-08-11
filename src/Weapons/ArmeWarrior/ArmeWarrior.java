@@ -2,35 +2,27 @@ package Weapons.ArmeWarrior;
 
 
 import Weapons.Arme;
+import characters.Character;
+import characters.Warrior;
 
 
 public class ArmeWarrior extends Arme {
 
 
 
-    private String name;
 
+    public ArmeWarrior(String name){
+        super(name);
 
-
-    public ArmeWarrior(String contentCase, String name){
-        super(contentCase);
-        this.name= name;
     }
+
+
 
     @Override
     public String toString() {
         return "ArmeWarrior{" +
-                "name='" + name + '\'' +
+                "name='" + getName() + '\'' +
                 '}';
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
 

@@ -40,10 +40,9 @@ public class Wizard extends Character {
     @Override
     public String toString() {
         return "le nom du magicien est "+ this.getName() +
-                " \nson niveau de vie est de " + this.getLevelOfLife() +
-                " \nil a une force d'attaque de " + this.getAttackForce()+
-                " \nSon arme est "+ spell.getSpellName() +
-                " \nSa force d'attaque est de "+ spell.getSpellAttackLevel();
+                " vie = " + this.getLevelOfLife() +
+                " force d'attaque = " + this.getAttackForce()+
+                " Son arme ="+ spell.getSpellName() ;
 
     }
 

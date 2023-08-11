@@ -1,13 +1,24 @@
 package ennemy;
 
+import characters.Character;
+
 public class Goblin extends Ennemi{
     private int attackForce;
     private int levelOfLife;
 
-    public Goblin(String contentCase) {
-        super(contentCase);
+    public Goblin() {
+        super("goblin");
         this.levelOfLife = 6;
         this.attackForce = 1;
+
+    }
+
+    public void interaction(Character character){
+
+        if (this instanceof Goblin){
+            System.out.println("Un Goblin arrive");
+            //character.setAttackForce(character.getAttackForce()+5);
+        }
 
     }
 
@@ -15,7 +26,7 @@ public class Goblin extends Ennemi{
     @Override
     public String toString() {
         return "Goblin {" +
-                this.getContentCase() +
+                this.getName()+
                 " , attackForce = " + this.attackForce +
                 ", levelOfLife = " + this.levelOfLife +
                 '}';
