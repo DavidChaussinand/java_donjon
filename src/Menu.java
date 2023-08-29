@@ -6,6 +6,7 @@ import characters.Wizard;
 import database.Database;
 import exceptions.PersonnageHorsPlateauException;
 
+import java.io.IOException;
 import java.sql.*;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class Menu {
     private List<Character> charactersList = new ArrayList<>();
 
 
-    public void menu() throws PersonnageHorsPlateauException, SQLException {
+    public void menu() throws PersonnageHorsPlateauException, SQLException, IOException {
 
         Scanner user_input = new Scanner(System.in);
         getHeroes();
@@ -53,9 +54,8 @@ public class Menu {
             }
         }
     }
-    public void getHeroes() throws SQLException {
+    public void getHeroes() throws SQLException, IOException {
         Connection connection = Database.getConnection();
-       // System.out.println("Connecté à la base de données !");
 
         Statement statement = connection.createStatement();
         String sql = "SELECT * FROM hero";
