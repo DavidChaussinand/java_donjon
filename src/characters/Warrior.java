@@ -32,11 +32,10 @@ public class Warrior extends Character {
     @Override
     public String toString() {
         return "Le nom du guerrier est "+ this.getName() +
-                " vie = " + this.getLevelOfLife() +
-                " force = " + this.getAttackForce()+
-                " Son arme = "+ weapon.getWeaponName() ;
-
-
+                " , vie = " + this.getLevelOfLife() +
+                " , force = " + this.getAttackForce()+
+                " , Son arme = "+ weapon.getWeaponName() +
+                " , Son bouclier = "+ this.shield;
     }
 
 

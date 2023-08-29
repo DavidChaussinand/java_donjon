@@ -16,6 +16,7 @@ import ennemy.Sorcerer;
 import exceptions.PersonnageHorsPlateauException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Game {
@@ -27,11 +28,13 @@ public class Game {
 
     private ArrayList<Case> board;
 
-    public Game(){
-        initializationBoardRandom();
+    public Game() {
+        this.board = initializationBoard();
+        this.board = initializationBoardRandom(this.board);
+
     }
 
-    public void initializationBoard(){
+    public ArrayList<Case> initializationBoard(){
         this.board= new ArrayList<>();
 
         for (int i = 1;  i < 65 ; i++){
@@ -70,45 +73,22 @@ public class Game {
                 this.board.add(new CaseEmpty());
             }
 
-
         }
+        return this.board;
     }
-    public void initializationBoardRandom(){
-        this.board= new ArrayList<>(14);
-        for (int i=0; i<14; i++) {
-            this.board.add(i,null);
-        }
-        int nombreDragon = 4;
-        int sorcier = 10;
-        int goblin = 10;
-        int mace = 5 ;
-        int sword = 4;
-        int lightning = 5;
-        int fireball = 2;
-        int potionStandard = 6;
-        int bigPotions = 2 ;
 
 
-    for (int j = 0 ; j <14; j++){
-
-        for (int i = 0 ; i <nombreDragon ; i++){
-            j = (int)(Math.random() * 14) +1;
-            this.board.set(j,new Dragon());
-        }
-
-        for (int i = 0 ; i <sorcier; i++){
-            j = (int)(Math.random() * 14) +1;
-            this.board.set(j,new Sorcerer());
-        }
-
-
-
+    public ArrayList<Case> initializationBoardRandom(ArrayList<Case> originalBoard) {
+        ArrayList<Case> shuffledBoard = new ArrayList<>(originalBoard);
+        Collections.shuffle(shuffledBoard);
+        return shuffledBoard;
     }
 
 
 
 
-    }
+
+
 
 
 
@@ -116,9 +96,7 @@ public class Game {
     public void play(Character perso) throws PersonnageHorsPlateauException {
         Menu dice = new Menu();
         boolean playInProgess = true;
-
-        Character perso1 = new Wizard("dada",5,5,"oui",new Spell("rien",0));
-        System.out.println(perso1);
+        System.out.println(perso);
 
 
         System.out.println("la parti est : " + playInProgess + "\n");
@@ -131,8 +109,8 @@ public class Game {
 
                 Case currentCase = board.get(j);
                 System.out.println(this.board.get(this.positionPlayer-1));    // tableau commence index 0, la position du joueur est à 1 : donc positionJoueur -1 .
-                currentCase.interaction(perso1);
-                System.out.println(perso1);
+                currentCase.interaction(perso);
+                System.out.println(perso);
 
                 System.out.println("la parti est : " + playInProgess);
 

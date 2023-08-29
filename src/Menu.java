@@ -1,55 +1,115 @@
+import Weapons.Spell;
+import Weapons.Weapon;
 import characters.Character;
 import characters.Warrior;
 import characters.Wizard;
+import database.Database;
 import exceptions.PersonnageHorsPlateauException;
 
+import java.sql.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Menu {
+    private List<Character> charactersList = new ArrayList<>();
 
-    public void menu() throws PersonnageHorsPlateauException {
-        Character perso = null;
+
+    public void menu() throws PersonnageHorsPlateauException, SQLException {
 
         Scanner user_input = new Scanner(System.in);
-        showMenu();
+        getHeroes();
 
-        switch (user_input.next()) {
-            case "1":
-                perso = createWarrior();
-                System.out.println(perso);
-                menu();
+        boolean keepGoing = true;
+        while (keepGoing) {
+            showMenu();
 
-                break;
-            case "2":
-                perso = createWizard();
-                System.out.println(perso);
+            switch (user_input.next()) {
 
-                menu();
-                break;
-            case "3":
+                case "1":
+                    if (!charactersList.isEmpty()) {
+                        System.out.println("Choisissez un personnage : ");
+                        for (int i = 0; i < charactersList.size(); i++) {
+                            System.out.println((i + 1) + ". " + charactersList.get(i).toString());
+                        }
+                        int choice = user_input.nextInt();
+                        Character selectedCharacter = charactersList.get(choice - 1); // -1 car l'index commence à 0
+                        Game jouer = new Game();
+                        jouer.play(selectedCharacter);
+                    } else {
+                        System.out.println("Créez d'abord un personnage !");
+                    }
+                    break;
 
-                Game jouer = new Game();
-                jouer.play(perso);
-                break;
-            case "4":
-                System.out.println("merci d'avoir quitter");
-                return;
-            default:
-                System.out.println("choose from 1 to 4");
-                menu();
-
+                case "2":
+                    System.out.println("merci d'avoir quitté");
+                    keepGoing = false;
+                    break;
+                default:
+                    System.out.println("choose from 1 to 2");
+                    break;
+            }
         }
     }
+    public void getHeroes() throws SQLException {
+        Connection connection = Database.getConnection();
+       // System.out.println("Connecté à la base de données !");
+
+        Statement statement = connection.createStatement();
+        String sql = "SELECT * FROM hero";
+
+        // exécution de la requête
+        ResultSet resultat = statement.executeQuery(sql);
+
+        // Récupération des données
+        while (resultat.next()) {
+            int id = resultat.getInt("Id");
+            String type = resultat.getString("Type");
+            String nom = resultat.getString("Nom");
+            int niveauVie = resultat.getInt("NiveauVie");
+            int niveauForce = resultat.getInt("NiveauForce");
+            String armeSort = resultat.getString("ArmeSort");
+            String bouclier = resultat.getString("Bouclier");
+
+            Character character;
+            if (type.equals("guerrier")) {
+                character = new Warrior();
+                ((Warrior) character).setShield(bouclier);
+                Weapon weapon = new Weapon(armeSort, niveauForce);
+                ((Warrior) character).setWeapon(weapon);
+
+
+            } else if (type.equals("Magicien")) {
+                character = new Wizard();
+                Spell weapon = new Spell(armeSort,niveauForce);
+                ((Wizard) character).setSpell(weapon);
+
+            } else {
+                System.out.println("Type de personnage non reconnu : " + type);
+                character = new Warrior();
+            }
+
+            character.setName(nom);
+            character.setLevelOfLife(niveauVie);
+            character.setAttackForce(niveauForce);
+
+            charactersList.add(character);
+
+
+        }
+        connection.close();
+    }
+
+
 
     public void showMenu(){
 
 
         System.out.println("voici le menu :  choix ");
-        System.out.println("tapez 1  : pour créer un guerrier ");
-        System.out.println("tapez 2  : pour créer un magicien");
-        System.out.println("tapez 3  : pour démarrer le jeu");
-        System.out.println("tapez 4  : pour quitter");
+        System.out.println("tapez 1  : pour démarrer le jeu");
+        System.out.println("tapez 2 : pour quitter");
     }
 
     public int rollTheDice (){
@@ -90,7 +150,7 @@ public class Menu {
         user_input.nextLine();
 
         updateCharacter(warrior);
-
+        charactersList.add(warrior);
         return warrior;
     }
 
@@ -110,7 +170,7 @@ public class Menu {
         user_input.nextLine();
 
         updateCharacter(wizard);
-
+        charactersList.add(wizard);
         return wizard;
     }
 
@@ -146,11 +206,6 @@ public class Menu {
 
         updateCharacter(character);
     }
-
-
-
-
-
 
 
 }

@@ -1,10 +1,16 @@
 package characters;
 
+import Weapons.Arme;
+import Weapons.Spell;
+
 public abstract class Character {
 
     private String name;
     private int levelOfLife;
     private int attackForce;
+    private Arme arme;
+    private Spell sort;
+
 
     public Character (String name, int levelOfLife, int attackForce  ){
         this.name = name;
@@ -32,6 +38,8 @@ public abstract class Character {
                 ", attackForce=" + this.attackForce +
                 '}';
     }
+
+
 
     public String getName() {
         return this.name;
