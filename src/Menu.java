@@ -5,10 +5,8 @@ import characters.Warrior;
 import characters.Wizard;
 import database.Database;
 import exceptions.PersonnageHorsPlateauException;
-
 import java.io.IOException;
 import java.sql.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -24,9 +22,9 @@ public class Menu {
         getHeroes();
 
         boolean keepGoing = true;
+
         while (keepGoing) {
             showMenu();
-
             switch (user_input.next()) {
 
                 case "1":
@@ -58,7 +56,7 @@ public class Menu {
         Connection connection = Database.getConnection();
 
         Statement statement = connection.createStatement();
-        String sql = "SELECT * FROM hero";
+        String sql = "SELECT * FROM Hero";
 
         // exécution de la requête
         ResultSet resultat = statement.executeQuery(sql);
@@ -99,7 +97,7 @@ public class Menu {
 
 
         }
-        connection.close();
+
     }
 
 
