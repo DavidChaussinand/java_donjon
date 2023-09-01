@@ -9,11 +9,15 @@ import java.util.Properties;
 public class Database {
 
 
-        // méthode singleton
+        /* modélisation en singleton pour la connexion à la base de donnée
+        *  la base de donnée est en private afin de ne pas permettre de nouveau objet en déhors de cette classe
+        *  */
+
 
         private static Connection connection;
 
         private Database() throws IOException, SQLException {
+
                InputStream env = new FileInputStream(".env");
                Properties properties = new Properties();
                properties.load(env);
